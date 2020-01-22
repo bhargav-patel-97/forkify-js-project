@@ -9,6 +9,13 @@ export const clearResults = () => {
     elements.searchResPages.innerHTML = '';
 };
 
+export const highlight = id => {
+    const resArr = Array.from(document.querySelectorAll('.results__link'));
+    resArr.forEach(el => {
+        el.classList.remove('results__link--active');
+    })
+    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+}
 // pasta with tomato and spinach 
 
 const trimRecipeTitle = (title, limit = 17) => {
