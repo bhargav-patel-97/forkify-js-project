@@ -21,20 +21,21 @@ export const clearRecipe = () => {
 const formatCount = count => {
     if(count) {
         // for ex count: 2.5
-        const [int, dec] = count.toString().split('.').map(el => parseInt(el, 10));
-        if(!dec) return count;
+        const newCount = Math.round(count * 10000) / 10000;
+        const [int, dec] = newCount.toString().split('.').map(el => parseInt(el, 10));
+        if(!dec) return newCount;
         if(int === 0) {
-            const fr = new Fraction(count);
+            const fr = new Fraction(newCount);
             return `${fr.numerator}/${fr.denominator}`;
         } else {
-            const fr =  new Fraction(count - int);
+            const fr =  new Fraction(newCount - int);
             return `${int} ${fr.numerator}/${fr.denominator}`;
         }
     } 
     return '?'; 
 };
 
-export const renderRecipe = (recipe) => {
+export const renderRecipe = (recipe, isLiked) => {
     const markup = `
             <figure class="recipe__fig">
                 <img src="${recipe.img_url}" alt="${recipe.title}" class="recipe__img">
@@ -73,7 +74,7 @@ export const renderRecipe = (recipe) => {
                 </div>
                 <button class="recipe__love">
                     <svg class="header__likes">
-                        <use href="img/icons.svg#icon-heart-outlined"></use>
+                        <use href="img/icons.svg#icon-heart${isLiked ? '' : '-outlined'}"></use>
                     </svg>
                 </button>
             </div>
@@ -106,4 +107,14 @@ export const renderRecipe = (recipe) => {
             </div>
     `;
     elements.recipe.insertAdjacentHTML('afterbegin', markup);
+};
+
+export const updateServingsIngredients = recipe => {
+    //  update servings
+    document.querySelector('.recipe__info-data--people').textContent = recipe.servings;
+    //  update ingredients
+    const countEl = Array.from(document.querySelectorAll('.recipe__count'));
+    countEl.forEach((el, i) => {
+        el.textContent = formatCount(recipe.ingredients[i].count);
+    });
 };

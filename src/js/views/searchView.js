@@ -14,11 +14,11 @@ export const highlight = id => {
     resArr.forEach(el => {
         el.classList.remove('results__link--active');
     })
-    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+    document.querySelector(`.results__link[href="#${id}"]`).classList.add('results__link--active');
 }
 // pasta with tomato and spinach 
 
-const trimRecipeTitle = (title, limit = 17) => {
+export const trimRecipeTitle = (title, limit = 17) => {
     if(title.length>limit) {
         const newTitle =[];
         title.split(' ').reduce((acc, cur) => {
