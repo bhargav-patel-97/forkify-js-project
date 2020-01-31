@@ -14,3 +14,5 @@ Dev tools
 - uniqid
 
 I would like to thank you Mr. Jonas Schmiddmann for providing such an amazing course.
+
+I have also decided to place this project in my git account for future purposes.
