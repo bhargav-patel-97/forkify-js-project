@@ -17,4 +17,4 @@ I would like to thank you Mr. Jonas Schmiddmann for providing such an amazing co
 
 I have also decided to place this project in my git account for future purposes.
 
-We hope to see new updates rolling out soon!
+There are no updates on this project as of now.
